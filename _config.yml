@@ -1,10 +1,17 @@
 layout: sidebar
 style: dark
+markdown: kramdown
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+highlighter: rouge
 
 plugins:
   - jekyll-octicons
   - jekyll-github-metadata
   - jemoji
+
+kramdown:
+  parse_block_html: true
+  show_warnings: true
 
 permalink: /:year/:month/:day/:title/
 

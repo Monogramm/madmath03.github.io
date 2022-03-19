@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Resume"
+published: false
 ---
 
 # DevOps FullStack Senior Engineer
@@ -56,7 +57,7 @@ Agile (Scrum), Kanban, Waterfall, SWOT, UML
 
 ## Projects History
 
-### August 2017 – August 2021: CTO • Monogramm
+### August 2017 - August 2021: CTO • Monogramm
 
 Management of the Monogramm group (co-founder):
 
@@ -77,7 +78,7 @@ Management of the Monogramm group (co-founder):
 
 Tools and technologies: Docker, Bash, Java, Spring Boot, PHP, Symfony, Python, Frappe, TypeScript, Angular, Vue.js, Buefy, Bulma, Bootstrap, GitLab, GitHub, Jenkins, ERPNext, Dolibarr, WordPress, VSCode, Penpot, LDAP
 
-### May 2018 – December 2018: DevOps Engineer • Michelin (subcontractor by Monogramm)
+### May 2018 - December 2018: DevOps Engineer • Michelin (subcontractor by Monogramm)
 
 Automation of Oracle deployment processes:
 
@@ -89,7 +90,7 @@ Automation of Oracle deployment processes:
 
 Tools and technologies: Jenkins, SVN, Bash, Oracle MDM, GitLab, Jira, Confluence, Service Now
 
-### March 2017 – December 2017: Tech Lead • ASP (subcontractor by CGI)
+### March 2017 - December 2017: Tech Lead • ASP (subcontractor by CGI)
 
 Development and maintenance of a set of client applications:
 
@@ -102,7 +103,7 @@ Development and maintenance of a set of client applications:
 
 Tools and technologies: Java, Struts, Maven, Glassfish, Mantis, Oracle PL/SQL, Shell, Eclipse
 
-### September 2012 – February 2017: Development Engineer • Michelin (subcontractor by CGI)
+### September 2012 - February 2017: Development Engineer • Michelin (subcontractor by CGI)
 
 Development and level 3 support of a set of applications in the Production Planning domain:
 
@@ -119,7 +120,7 @@ Development and level 3 support of a set of applications in the Production Plann
 
 Tools and technologies: Java, Swing, Eclipse RCP, Oracle PL/SQL, Jira, SVN, IBM Websphere Application Service (WAS), Shell, Jenkins, ETL Talend, EAI, JVisualVM, Eclipse
 
-### October 2011 – August 2012: IT analyst • CGI (sandwich courses)
+### October 2011 - August 2012: IT analyst • CGI (sandwich courses)
 
 Development of an internal transversal tool for monitoring customer projects:
 

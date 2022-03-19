@@ -1,5 +1,5 @@
 layout: sidebar
-style: dark
+style: light
 markdown: kramdown
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 highlighter: rouge

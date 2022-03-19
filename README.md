@@ -167,7 +167,7 @@ To **add a page** to your website (e.g. detailed resume):
 2.  Give it a filename that you want to be used in the page's URL (e.g. `http://yoursite.dev/filename`).
 3.  At the start of your file, include the following [front matter](https://jekyllrb.com/docs/front-matter/):
 
-```markdown
+```yml
 ---
 layout: default
 ---
@@ -186,7 +186,7 @@ YEAR-MONTH-DAY-title.MARKUP
 
 3.  At the start of your file, include the following [front matter](https://jekyllrb.com/docs/front-matter/):
 
-```markdown
+```yml
 ---
 title: "The title of my blog post"
 ---

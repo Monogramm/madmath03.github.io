@@ -30,10 +30,10 @@ Agile (Scrum), Kanban, Waterfall, SWOT, UML
 
 ### Languages
 
--   :fr: French: native
--   :gb: English: bilingual
--   :es: Spanish: basic
--   :ru: Russian: notions
+-   :fr: French: native (C2)
+-   :gb: English: bilingual (C2)
+-   :es: Spanish: basic (B1)
+-   :ru: Russian: notions (A2)
 
 ## Education
 
@@ -56,7 +56,7 @@ Agile (Scrum), Kanban, Waterfall, SWOT, UML
 
 ## Projects History
 
-### Since August 2017: CTO • Monogramm
+### August 2017 – August 2021: CTO • Monogramm
 
 Management of the Monogramm group (co-founder):
 

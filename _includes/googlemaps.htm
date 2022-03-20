@@ -1,0 +1,250 @@
+<div id="secondary">
+	<div id="info" class="view span-7 left">
+		
+		<a id='link_Reset' href="#" style="float: right;"
+			onmousedown='reset();'>
+			Reset
+		</a>
+		
+		<span title="Click to automatically search for the corresponding city (in the selected address area)"><b>Help</b></span>
+		<br/>
+		<input
+			id='button_Paris' type='button' value='Paris'
+			onclick='paris();'/>
+		<input
+			id='button_Clermont' type='button' value='Clermont'
+			onclick='clermont();'/>
+		<br/>
+		
+		<br/>
+		<span><b>Addresses</b></span><br/><br/>
+		
+		<input id="address1" type="radio" value="1" name="selection" 
+				class="inline" checked="checked"/>
+		<span>Address 1:</span>
+		<form action="javascript:searchAddress('1');">
+			<input id='text_searchAddress1' size="24" value=''/> 
+			<input
+				id='button_searchAddress1' type='submit' value='Search'/><br/>
+			<span>Address: </span><span id="addr1"></span><br/>
+			<span>Latitude: </span><span id="lat1"></span><br/>
+			<span>Longitude: </span><span id="lng1"></span><br/>
+		</form>
+		<br/>
+		
+		<input id="address2" type="radio" value="2" name="selection"/>
+		<span>Address 2:</span>
+		<form action="javascript:searchAddress('2');">
+			<input id='text_searchAddress2' size="24" value=''/> 
+			<input
+				id='button_searchAddress2' type='submit' value='Search'/><br/>
+			<span>Address: </span><span id="addr2"></span><br/>
+			<span>Latitude: </span><span id="lat2"></span><br/>
+			<span>Longitude: </span><span id="lng2"></span><br/>
+		</form>
+		
+		<br/>
+		
+		<span><b>Route</b></span><br/>
+		<form action="javascript:searchDirections();">
+			<input
+				id='button_directions' type='submit' value='Calculer'/><br/>
+			<span>Distance: </span><span id="dist"></span><br/>
+			<span>Duration: </span><span id="dur"></span><br/>
+		</form>
+		
+		<br/>
+		
+		<span><b>Ressources</b></span><br/>
+		<ul>
+			<li>
+				<a href="https://code.google.com/apis/console/">
+					Google APIs Console
+				</a>
+			</li>
+			
+			<li>
+				<a href="http://code.google.com/intl/fr/apis/maps/documentation/javascript/v2/reference.html">
+					Google Maps JavaScript API V2 Reference
+				</a>
+			</li>
+			
+			<li>
+				<a href="http://www.weboblog.fr/">
+					Tutorial API Google Map 
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	<!-- Map -->
+	<div id="map" class="last span-17 ajax-loading-big" style="left: 10px; min-height: 520px;"></div>
+	
+</div>
+
+<script type="text/javascript"
+	src="https://www.google.com/jsapi?key=AIzaSyBkQ3NkaZaGdrbGaqvzXbW_REsLarSaC9Y">
+</script>
+
+<script type="text/javascript"> 
+	google.load("maps", "2.x"); 
+	
+	var map, marker, gpsInit, geocoder, directions;
+	
+	function printCity(noInput, placemarker) {
+		// If no place marker
+		if (!placemarker) {
+			document.getElementById('addr'+noInput).innerHTML = ''; 
+			document.getElementById('lat'+noInput).innerHTML = ''; 
+			document.getElementById('lng'+noInput).innerHTML = '';
+		}
+		else {
+			var point = new GLatLng(placemarker['Point']['coordinates'][1], 
+					placemarker['Point']['coordinates'][0]);
+			
+			document.getElementById("addr"+noInput).innerHTML = 
+				JSON.stringify(placemarker['address']);
+			document.getElementById('lat'+noInput).innerHTML = point.lat(); 
+			document.getElementById('lng'+noInput).innerHTML = point.lng();
+			
+			// Center...
+			map.setCenter(point, 5); 
+			// ...and show marker
+			marker.setLatLng(point);
+			map.clearOverlays();
+			map.addOverlay(marker);
+		}
+		
+	}
+	
+	function searchAddress(noInput) {
+		var address;
+
+		address = document.getElementById("text_searchAddress"+noInput).value;
+		
+		geocoder.getLocations( address, function(results) {
+							if (!results) {
+								alert("The address does not exist or could not be located...");
+								printCity(noInput);
+							} else if (results['Status']['code'] == 200) {
+								//alert(JSON.stringify(results));
+								if (results['Placemark'].length > 1)
+									alert("Several results correspond to your research. Enter a more specific address...");
+								else
+									printCity(noInput, results['Placemark'][0]);
+							}
+							
+						});
+	}
+	
+	function paris() {
+		var addresses = document.getElementsByName('selection');
+		
+		for (var i = 0, n = addresses.length ; i < n ; i++)
+		{
+			if (addresses[i].checked)
+			{
+				document.getElementById('text_searchAddress'+addresses[i].value).value = 'Paris, France';
+				searchAddress(addresses[i].value);
+			}
+		}
+		
+	}
+	
+	function clermont() {
+		var addresses = document.getElementsByName('selection');
+		
+		for (var i = 0, n = addresses.length ; i < n ; i++)
+		{
+			if (addresses[i].checked)
+			{
+				document.getElementById('text_searchAddress'+addresses[i].value).value = 'Clermont Ferrand, France';
+				searchAddress(addresses[i].value);
+			}
+		}
+		
+	}
+	
+	function searchDirections() {
+		var addr1 = document.getElementById('addr1').innerHTML;
+		var addr2 = document.getElementById('addr2').innerHTML;
+		
+		if (addr1 != '' && addr2 != '')
+		{
+			map.clearOverlays();
+			directions.load('from: '+ document.getElementById('addr1').innerHTML
+				+ ' to: ' + document.getElementById('addr2').innerHTML);
+			
+			// TODO
+			//printDirectionsInfos();
+		}
+		else
+			alert('Enter 2 correct addresses to calculate a route.');
+	}
+	
+	function clear() {
+		printCity(1);
+		printCity(2);
+
+		document.getElementById('dist').innerHTML = '';
+		document.getElementById('dur').innerHTML = '';
+		
+		map.clearOverlays();
+	}
+	
+	function reset() {
+		clear();
+		map.setCenter(gpsInit, 5);
+	}
+	
+	function mapsLoaded() {
+		// Creating the map in the "map" div
+		map = new GMap2(document.getElementById("map"));
+		//map.enableGoogleBar();
+		
+		// Contact information
+		var lat = 45.777461;
+		var lng = 3.082008;
+		gpsInit = new GLatLng(lat, lng);
+		
+		// Markers
+		marker = new GMarker(gpsInit);
+
+		// Map position initialization
+		reset();
+		
+		// Map controls
+		var MapControl = new GMapTypeControl();
+		map.addControl(MapControl);
+		
+		var LargeMapControl = new GLargeMapControl();
+		map.addControl(LargeMapControl);
+		
+		// Mouse zoom allowed
+		map.enableScrollWheelZoom();
+
+		// Geolocation of an address
+		geocoder = new GClientGeocoder();
+		
+		// Directions for the route
+		directions = new GDirections(map);
+		
+		GEvent.addListener(directions, "load", function() {
+			document.getElementById('dist').innerHTML = directions.getDistance().html;
+			document.getElementById('dur').innerHTML = directions.getDuration().html;
+		});
+	}
+	
+	function loadMaps() {
+		google.load("maps", "2", {
+			"callback" : mapsLoaded
+		});
+		document.getElementById("map").className = "last span-17";
+	}
+	
+	function start() {
+		google.setOnLoadCallback(loadMaps);
+	}
+	
+	start();
+</script>

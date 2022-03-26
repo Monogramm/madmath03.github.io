@@ -1,7 +1,8 @@
-<h2 {% if site.style == 'dark' %}class="text-white"{% endif %}>My Thoughts</h2>
-<p class="f4 mb-4 {% if site.style == 'dark' %}text-white{% else %}text-gray{% endif %}">Articles I've written.</p>
+<h2 {% if site.style == 'dark' %}class="text-white"{% endif %}>Articles I've written</h2>
+<p class="f4 mb-4 {% if site.style == 'dark' %}text-white{% else %}text-gray{% endif %}">Welcome to my playground! In this section, I will share with you some of the "tips & tricks" I have been playing with. Most of them are web oriented, but I may share some other piece of code like C, C++, JAVA, etc... so come back again :wink:<br/>
+  You may find some useful, some not, or maybe that some of them are lacking something. In any case, if you think you can contribute to make all this better, do not hesitate to contact me or send a Pull Request.</p>
 <div class="d-sm-flex flex-wrap gutter-condensed mb-4">
-  {% for post in site.posts limit: 6 %}
+  {% for post in site.posts limit: 20 %}
     <div class="col-sm-6 col-md-12 col-lg-6 col-xl-4 mb-3">
       {% include post-card.html %}
     </div>
